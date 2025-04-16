@@ -1113,4 +1113,44 @@ section {
 
 .rewards-feature a:hover {
     color: var(--primary-dark);
+}
+
+/* Direct Link */
+.direct-link {
+    background-color: var(--primary-light);
+    padding: 15px;
+    border-radius: 8px;
+    margin-bottom: 20px;
+    text-align: center;
+    font-weight: 500;
+}
+
+.direct-link a {
+    color: var(--primary-color);
+    font-weight: 600;
+    text-decoration: underline;
+}
+
+.direct-link a:hover {
+    color: var(--primary-dark);
+}
+
+/* WhatsApp Button */
+.whatsapp-btn {
+    background-color: #25d366;
+    margin-right: 10px;
+}
+
+.whatsapp-btn:hover {
+    background-color: #128c7e;
+}
+
+.success-message a {
+    color: var(--primary-color);
+    font-weight: 600;
+    text-decoration: underline;
+}
+
+.success-message a:hover {
+    color: var(--primary-dark);
 } 

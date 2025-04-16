@@ -151,12 +151,16 @@ function showSuccessMessage(name, code, option) {
         <h3>Terima kasih, ${name}!</h3>
         <p>Kode referral saya adalah:</p>
         <div class="referral-code">${code}</div>
-        <p>Segera check WhatsApp Anda untuk menerima petunjuk lengkap cara mendaftar KromBank dengan kode referral saya.</p>
-        <p>Setelah mendaftar dan menabung, Anda akan mendapatkan ${rewardText}.</p>
+        <p>Silakan <a href="https://krom.id/referral/?code=${code}" target="_blank">daftar KromBank dengan kode di atas</a>.</p>
+        <p>Setelah mendaftar dan menabung, silakan <a href="https://wa.me/6285752083533?text=Halo%20Ferdi,%20saya%20${name}%20sudah%20membuka%20KromBank%20menggunakan%20kode%20referral%20kamu%20${code}" target="_blank">konfirmasi ke WhatsApp Ferdi</a> untuk lebih lanjut.</p>
+        <p>Anda akan mendapatkan ${rewardText}.</p>
         <button class="btn-primary copy-btn" data-code="${code}">
             <i class="fas fa-copy"></i> Salin Kode
         </button>
         <div class="reset-container">
+            <a href="https://wa.me/6285752083533?text=Halo%20Ferdi,%20saya%20ingin%20tahu%20lebih%20lanjut%20tentang%20referral%20KromBank" target="_blank" class="btn-primary whatsapp-btn">
+                <i class="fab fa-whatsapp"></i> Chat di WhatsApp
+            </a>
             <button class="btn-secondary reset-btn">
                 <i class="fas fa-redo"></i> Isi Form Lagi
             </button>
