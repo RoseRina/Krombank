@@ -1,0 +1,21 @@
+{
+  "name": "krombank-referral",
+  "version": "1.0.0",
+  "description": "Landing page ajakan personal untuk referral KromBank",
+  "main": "index.html",
+  "scripts": {
+    "dev": "serve .",
+    "build": "echo \"No build step required\"",
+    "start": "serve ."
+  },
+  "keywords": [
+    "krombank",
+    "referral",
+    "landing-page"
+  ],
+  "author": "KromBank Referral",
+  "license": "MIT",
+  "devDependencies": {
+    "serve": "^14.2.0"
+  }
+} 

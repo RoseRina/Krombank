@@ -1,14 +1,15 @@
 # KromBank Referral Landing Page
 
-Landing page untuk program referral KromBank dengan desain profesional dan responsif.
+Landing page personal untuk program referral KromBank, membantu Anda mengajak teman bergabung dengan KromBank menggunakan kode referral Anda dan memberikan bonus tambahan.
 
 ## Fitur
 
-- Desain modern dan elegan yang mempresentasikan brand KromBank
+- Desain modern, elegan, dan personal
 - Tampilan responsif untuk semua perangkat (desktop, tablet, mobile)
-- Highlight program referral dan rewards yang ditawarkan
+- Detail rewards KromBank + bonus tambahan dari Anda
+- Formulir pendaftaran untuk calon pengguna
+- Cara kerja program referral yang jelas
 - Bagian FAQ untuk menjawab pertanyaan umum
-- Formulir pendaftaran untuk mendapatkan kode referral
 - Animasi dan interaksi untuk meningkatkan pengalaman pengguna
 
 ## Teknologi yang Digunakan
@@ -31,7 +32,21 @@ git clone https://github.com/RoseRina/Krombank.git
 cd Krombank
 ```
 
-3. Buka file `index.html` di browser atau gunakan server lokal seperti Live Server di VSCode
+3. Jalankan server lokal (opsional)
+```
+npx serve
+```
+
+4. Atau buka file `index.html` langsung di browser
+
+## Panduan Kustomisasi
+
+Untuk menyesuaikan landing page ini dengan kebutuhan Anda:
+
+1. Ganti informasi kontak di bagian footer (WhatsApp dan Email)
+2. Tambahkan logo dan gambar Anda di folder `images/`
+3. Sesuaikan warna dengan mengedit variabel CSS di file `styles.css`
+4. Perbarui teks dan konten sesuai dengan preferensi personal Anda
 
 ## Deployment
 
@@ -59,6 +74,8 @@ Krombank/
 ├── index.html           # Halaman utama
 ├── styles.css           # File CSS untuk styling
 ├── script.js            # JavaScript untuk interaksi
+├── package.json         # Konfigurasi NPM
+├── vercel.json          # Konfigurasi Vercel
 ├── images/              # Folder untuk gambar
 │   ├── krombank-logo.png
 │   ├── hero-image.png
@@ -66,8 +83,9 @@ Krombank/
 └── README.md            # Dokumentasi proyek
 ```
 
-## Kontak
+## Kontak & Dukungan
 
-Untuk pertanyaan atau dukungan, silakan hubungi:
-- Email: [email@krombank.com](mailto:email@krombank.com)
-- Website: [krombank.com](https://krombank.com) 
+Jika Anda memiliki pertanyaan atau masalah dengan template landing page ini, silakan buat issue di GitHub atau hubungi kami melalui:
+
+- Email: [email@example.com](mailto:email@example.com)
+- WhatsApp: [+6281234567890](https://wa.me/6281234567890) 

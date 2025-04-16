@@ -47,12 +47,25 @@ document.addEventListener('DOMContentLoaded', function() {
             const name = document.getElementById('name').value;
             const email = document.getElementById('email').value;
             const phone = document.getElementById('phone').value;
+            const option = document.getElementById('option').value;
             
-            // Generate a random referral code (for demo purposes)
-            const referralCode = generateReferralCode();
+            // Validate form
+            if (!name || !email || !phone || !option) {
+                showMessage('error', 'Mohon lengkapi semua field');
+                return;
+            }
             
-            // Show success message
-            showSuccessMessage(name, referralCode);
+            // For demo, show loading message
+            showLoadingMessage();
+            
+            // Simulate API call with timeout
+            setTimeout(() => {
+                // Generate a random referral code (for demo purposes)
+                const referralCode = generateReferralCode();
+                
+                // Show success message
+                showSuccessMessage(name, referralCode, option);
+            }, 1500);
             
             // Reset form
             this.reset();
@@ -88,28 +101,79 @@ function generateReferralCode() {
     return code;
 }
 
-// Show success message after form submission
-function showSuccessMessage(name, code) {
+// Show loading message
+function showLoadingMessage() {
     const formContainer = document.querySelector('.referral-form');
+    const loadingMessage = document.createElement('div');
+    
+    loadingMessage.className = 'loading-message';
+    loadingMessage.innerHTML = `
+        <div class="loading-spinner">
+            <i class="fas fa-spinner fa-spin"></i>
+        </div>
+        <p>Memproses permintaan Anda...</p>
+    `;
+    
+    // Add loading message below form
+    formContainer.style.display = 'none';
+    formContainer.parentNode.appendChild(loadingMessage);
+}
+
+// Show error message
+function showMessage(type, message) {
+    const alertDiv = document.createElement('div');
+    alertDiv.className = `alert alert-${type}`;
+    alertDiv.textContent = message;
+    
+    const form = document.getElementById('referral-form');
+    form.parentNode.insertBefore(alertDiv, form);
+    
+    // Remove the alert after 3 seconds
+    setTimeout(() => {
+        alertDiv.remove();
+    }, 3000);
+}
+
+// Show success message after form submission
+function showSuccessMessage(name, code, option) {
+    const formContainer = document.querySelector('.loading-message') || document.querySelector('.referral-form');
+    const registerContent = formContainer.parentNode;
     const successMessage = document.createElement('div');
+    
+    let rewardText = '';
+    if (option === '300rb') {
+        rewardText = 'Rp75.000 (Rp50.000 dari KromBank + Rp25.000 bonus dari saya)';
+    } else if (option === '2jt') {
+        rewardText = 'Rp250.000 (Rp150.000 dari KromBank + Rp100.000 bonus dari saya)';
+    } else {
+        rewardText = 'rewards menarik sesuai pilihan paket Anda';
+    }
     
     successMessage.className = 'success-message';
     successMessage.innerHTML = `
         <div class="success-icon">
             <i class="fas fa-check-circle"></i>
         </div>
-        <h3>Selamat, ${name}!</h3>
-        <p>Kode referral Anda adalah:</p>
+        <h3>Terima kasih, ${name}!</h3>
+        <p>Kode referral saya adalah:</p>
         <div class="referral-code">${code}</div>
-        <p>Bagikan kode ini kepada teman Anda untuk mendapatkan reward.</p>
+        <p>Segera check WhatsApp Anda untuk menerima petunjuk lengkap cara mendaftar KromBank dengan kode referral saya.</p>
+        <p>Setelah mendaftar dan menabung, Anda akan mendapatkan ${rewardText}.</p>
         <button class="btn-primary copy-btn" data-code="${code}">
             <i class="fas fa-copy"></i> Salin Kode
         </button>
+        <div class="reset-container">
+            <button class="btn-secondary reset-btn">
+                <i class="fas fa-redo"></i> Isi Form Lagi
+            </button>
+        </div>
     `;
     
-    // Replace form with success message
-    formContainer.style.display = 'none';
-    formContainer.parentNode.appendChild(successMessage);
+    // Replace loading message with success message
+    if (formContainer) {
+        formContainer.remove();
+    }
+    registerContent.appendChild(successMessage);
     
     // Add copy to clipboard functionality
     const copyBtn = document.querySelector('.copy-btn');
@@ -129,11 +193,28 @@ function showSuccessMessage(name, code) {
                 });
         });
     }
+    
+    // Add reset form functionality
+    const resetBtn = document.querySelector('.reset-btn');
+    
+    if (resetBtn) {
+        resetBtn.addEventListener('click', function() {
+            const successMsg = document.querySelector('.success-message');
+            if (successMsg) {
+                successMsg.remove();
+            }
+            
+            const referralForm = document.querySelector('.referral-form');
+            if (referralForm) {
+                referralForm.style.display = 'block';
+            }
+        });
+    }
 }
 
 // Add animation on scroll
 window.addEventListener('load', function() {
-    const animatedElements = document.querySelectorAll('.reward-card, .step, .faq-item');
+    const animatedElements = document.querySelectorAll('.reward-card, .step, .faq-item, .promo-feature');
     
     function checkScroll() {
         animatedElements.forEach(element => {
