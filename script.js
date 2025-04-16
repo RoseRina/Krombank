@@ -66,7 +66,7 @@ document.addEventListener('DOMContentLoaded', function() {
             }
             
             // Format WhatsApp message
-            let whatsappMessage = `Halo Ferdi, saya ${name} ingin daftar KromBank menggunakan kode referral FERD5294.%0A%0AInformasi saya:%0A- Email: ${email}%0A- No. HP: ${phone}%0A- Pilihan: ${optionText}`;
+            let whatsappMessage = `Halo Ferdi, saya ${name} ingin daftar KromBank menggunakan kode referral FERD5294.%0A%0AInformasi saya:%0A- No. HP: ${phone}%0A- Pilihan: ${optionText}`;
             
             // Add message if provided
             if (message) {
