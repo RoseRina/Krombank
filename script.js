@@ -19,18 +19,17 @@ document.addEventListener('DOMContentLoaded', function() {
     });
     
     // Smooth scroll for navigation links
-    const navLinks = document.querySelectorAll('a[href^="#"]');
+    const navLinks = document.querySelectorAll('nav a');
     
     navLinks.forEach(link => {
         link.addEventListener('click', function(e) {
             e.preventDefault();
-            
             const targetId = this.getAttribute('href');
-            const targetElement = document.querySelector(targetId);
+            const targetSection = document.querySelector(targetId);
             
-            if (targetElement) {
+            if (targetSection) {
                 window.scrollTo({
-                    top: targetElement.offsetTop - 100,
+                    top: targetSection.offsetTop - 100,
                     behavior: 'smooth'
                 });
             }
@@ -38,84 +37,191 @@ document.addEventListener('DOMContentLoaded', function() {
     });
     
     // Form submission
-    const referralForm = document.getElementById('referral-form');
+    const registerForm = document.querySelector('#register-form');
     
-    if (referralForm) {
-        referralForm.addEventListener('submit', function(e) {
+    if (registerForm) {
+        registerForm.addEventListener('submit', function(e) {
             e.preventDefault();
             
-            const name = document.getElementById('name').value;
-            const email = document.getElementById('email').value;
-            const phone = document.getElementById('phone').value;
-            const option = document.getElementById('option').value;
+            // Basic form validation
+            const nameInput = document.querySelector('#name');
+            const emailInput = document.querySelector('#email');
+            const phoneInput = document.querySelector('#phone');
             
-            // Validate form
-            if (!name || !email || !phone || !option) {
-                showMessage('error', 'Mohon lengkapi semua field');
-                return;
+            let isValid = true;
+            
+            if (!nameInput.value.trim()) {
+                isValid = false;
+                showError(nameInput, 'Nama tidak boleh kosong');
+            } else {
+                clearError(nameInput);
             }
             
-            // For demo, show loading message
-            showLoadingMessage();
+            if (!emailInput.value.trim() || !isValidEmail(emailInput.value)) {
+                isValid = false;
+                showError(emailInput, 'Email tidak valid');
+            } else {
+                clearError(emailInput);
+            }
             
-            // Simulate API call with timeout
-            setTimeout(() => {
-                // Generate a random referral code (for demo purposes)
-                const referralCode = generateReferralCode();
+            if (!phoneInput.value.trim() || !isValidPhone(phoneInput.value)) {
+                isValid = false;
+                showError(phoneInput, 'Nomor telepon tidak valid');
+            } else {
+                clearError(phoneInput);
+            }
+            
+            if (isValid) {
+                // Show loading state
+                const submitBtn = registerForm.querySelector('button[type="submit"]');
+                const originalText = submitBtn.textContent;
+                submitBtn.textContent = 'Processing...';
+                submitBtn.disabled = true;
                 
-                // Show success message
-                showSuccessMessage(name, referralCode, option);
-            }, 1500);
-            
-            // Reset form
-            this.reset();
+                // Simulate API call
+                setTimeout(() => {
+                    submitBtn.textContent = 'Berhasil!';
+                    registerForm.reset();
+                    
+                    // Show success message
+                    const successMsg = document.createElement('div');
+                    successMsg.className = 'success-message';
+                    successMsg.textContent = 'Pendaftaran berhasil! Tim kami akan menghubungi Anda segera.';
+                    registerForm.appendChild(successMsg);
+                    
+                    setTimeout(() => {
+                        submitBtn.textContent = originalText;
+                        submitBtn.disabled = false;
+                        successMsg.remove();
+                    }, 3000);
+                }, 1500);
+            }
         });
     }
     
-    // Sticky Header
-    const header = document.querySelector('.header');
-    let lastScrollTop = 0;
+    function showError(input, message) {
+        const formGroup = input.closest('.form-group');
+        const errorElement = formGroup.querySelector('.error-message') || document.createElement('div');
+        
+        errorElement.className = 'error-message';
+        errorElement.textContent = message;
+        
+        if (!formGroup.querySelector('.error-message')) {
+            formGroup.appendChild(errorElement);
+        }
+        
+        input.classList.add('error');
+    }
+    
+    function clearError(input) {
+        const formGroup = input.closest('.form-group');
+        const errorElement = formGroup.querySelector('.error-message');
+        
+        if (errorElement) {
+            errorElement.remove();
+        }
+        
+        input.classList.remove('error');
+    }
+    
+    function isValidEmail(email) {
+        const re = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+        return re.test(email);
+    }
+    
+    function isValidPhone(phone) {
+        const re = /^(\+62|62|0)[0-9]{9,12}$/;
+        return re.test(phone);
+    }
+    
+    // Sticky header
+    const header = document.querySelector('header');
+    const headerHeight = header.offsetHeight;
+    let isSticky = false;
     
     window.addEventListener('scroll', function() {
-        const scrollTop = window.pageYOffset || document.documentElement.scrollTop;
-        
-        if (scrollTop > 50) {
+        if (window.scrollY > 100 && !isSticky) {
             header.classList.add('sticky');
-        } else {
+            document.body.style.paddingTop = headerHeight + 'px';
+            isSticky = true;
+        } else if (window.scrollY <= 100 && isSticky) {
             header.classList.remove('sticky');
+            document.body.style.paddingTop = '0';
+            isSticky = false;
         }
-        
-        lastScrollTop = scrollTop;
     });
     
-    // Mobile Menu Toggle
-    const menuToggle = document.querySelector('.menu-toggle');
-    const navLinks = document.querySelector('.nav-links');
+    // Mobile menu toggle
+    const menuButton = document.querySelector('.menu-toggle');
+    const mobileNav = document.querySelector('.mobile-nav');
+    const mobileNavLinks = document.querySelectorAll('.mobile-nav a');
+    const overlay = document.querySelector('.overlay');
     
-    if (menuToggle) {
-        menuToggle.addEventListener('click', function() {
-            navLinks.classList.toggle('active');
+    if (menuButton && mobileNav) {
+        menuButton.addEventListener('click', function() {
+            mobileNav.classList.toggle('active');
+            menuButton.classList.toggle('active');
+            document.body.classList.toggle('no-scroll');
+            if (overlay) {
+                overlay.classList.toggle('active');
+            }
+        });
+        
+        // Close mobile menu when clicking on a link
+        mobileNavLinks.forEach(link => {
+            link.addEventListener('click', function() {
+                mobileNav.classList.remove('active');
+                menuButton.classList.remove('active');
+                document.body.classList.remove('no-scroll');
+                if (overlay) {
+                    overlay.classList.remove('active');
+                }
+            });
+        });
+        
+        // Close mobile menu when clicking outside
+        if (overlay) {
+            overlay.addEventListener('click', function() {
+                mobileNav.classList.remove('active');
+                menuButton.classList.remove('active');
+                document.body.classList.remove('no-scroll');
+                overlay.classList.remove('active');
+            });
+        }
+    }
+    
+    // Animation delays for cards
+    const reviewCards = document.querySelectorAll('.review-card');
+    const benefitCards = document.querySelectorAll('.benefit-card');
+    const heroStats = document.querySelector('.hero-stats');
+    
+    reviewCards.forEach((card, index) => {
+        card.style.animationDelay = `${0.1 + index * 0.2}s`;
+    });
+    
+    benefitCards.forEach((card, index) => {
+        card.style.animationDelay = `${0.1 + index * 0.2}s`;
+    });
+    
+    // Animate elements on scroll
+    const animatedElements = document.querySelectorAll('.benefit-card, .review-card, .reward-card, .step, .faq-item, .promo-feature, .hero-stats');
+    
+    function checkIfInView() {
+        animatedElements.forEach(element => {
+            const elementPosition = element.getBoundingClientRect().top;
+            const windowHeight = window.innerHeight;
+            
+            if (elementPosition < windowHeight - 50) {
+                element.classList.add('animate');
+            }
         });
     }
     
-    // Close menu when clicking outside
-    document.addEventListener('click', function(event) {
-        if (!event.target.closest('.navbar')) {
-            if (navLinks.classList.contains('active')) {
-                navLinks.classList.remove('active');
-            }
-        }
-    });
+    // Check on load
+    checkIfInView();
     
-    // Close menu when clicking on a nav link
-    const mobileNavLinks = document.querySelectorAll('.nav-links a');
-    mobileNavLinks.forEach(link => {
-        link.addEventListener('click', function() {
-            if (navLinks.classList.contains('active')) {
-                navLinks.classList.remove('active');
-            }
-        });
-    });
+    // Check on scroll
+    window.addEventListener('scroll', checkIfInView);
 });
 
 // Generate a random referral code
@@ -241,7 +347,7 @@ function showSuccessMessage(name, code, option) {
 
 // Add animation on scroll
 window.addEventListener('load', function() {
-    const animatedElements = document.querySelectorAll('.reward-card, .step, .faq-item, .promo-feature');
+    const animatedElements = document.querySelectorAll('.reward-card, .step, .faq-item, .promo-feature, .benefit-card, .review-card, .hero-stats');
     
     function checkScroll() {
         animatedElements.forEach(element => {
