@@ -91,14 +91,8 @@ document.addEventListener('DOMContentLoaded', function() {
 
 // Generate a random referral code
 function generateReferralCode() {
-    const chars = 'ABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789';
-    let code = 'KROM';
-    
-    for (let i = 0; i < 6; i++) {
-        code += chars.charAt(Math.floor(Math.random() * chars.length));
-    }
-    
-    return code;
+    // Menggunakan kode referral yang telah ditentukan
+    return 'FERD5294';
 }
 
 // Show loading message

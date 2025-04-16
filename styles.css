@@ -1067,4 +1067,50 @@ section {
         font-size: 12px;
         padding: 6px 12px;
     }
+}
+
+/* Rewards Feature */
+.rewards-feature {
+    background-color: rgba(255, 255, 255, 0.8);
+    padding: 20px 30px;
+    border-radius: 15px;
+    margin-bottom: 40px;
+    text-align: center;
+    border: 2px dashed var(--primary-color);
+    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.05);
+}
+
+.highlight-text {
+    font-size: 18px;
+    font-weight: 600;
+    color: var(--text-color);
+    margin-bottom: 15px;
+}
+
+.highlight-secondary {
+    font-size: 16px;
+    font-weight: 500;
+    color: var(--accent-color);
+    margin-top: 20px;
+}
+
+.referral-code-display {
+    font-size: 24px;
+    color: var(--primary-color);
+    background: var(--primary-light);
+    padding: 5px 15px;
+    border-radius: 8px;
+    letter-spacing: 1px;
+    margin: 0 5px;
+}
+
+.rewards-feature a {
+    color: var(--primary-color);
+    font-weight: 600;
+    text-decoration: underline;
+    transition: all 0.3s ease;
+}
+
+.rewards-feature a:hover {
+    color: var(--primary-dark);
 } 
