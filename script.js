@@ -37,65 +37,49 @@ document.addEventListener('DOMContentLoaded', function() {
     });
     
     // Form submission
-    const registerForm = document.querySelector('#register-form');
+    const referralForm = document.getElementById('referral-form');
     
-    if (registerForm) {
-        registerForm.addEventListener('submit', function(e) {
+    if (referralForm) {
+        referralForm.addEventListener('submit', function(e) {
             e.preventDefault();
             
-            // Basic form validation
-            const nameInput = document.querySelector('#name');
-            const emailInput = document.querySelector('#email');
-            const phoneInput = document.querySelector('#phone');
+            const name = document.getElementById('name').value;
+            const email = document.getElementById('email').value;
+            const phone = document.getElementById('phone').value;
+            const option = document.getElementById('option').value;
+            const message = document.getElementById('message') ? document.getElementById('message').value : '';
             
-            let isValid = true;
+            // Validate form
+            if (!name || !email || !phone || !option) {
+                showMessage('error', 'Mohon lengkapi semua field');
+                return;
+            }
             
-            if (!nameInput.value.trim()) {
-                isValid = false;
-                showError(nameInput, 'Nama tidak boleh kosong');
+            // Build WhatsApp message
+            let optionText = '';
+            if (option === '300rb') {
+                optionText = 'Nabung 300rb (Hold 1 bulan)';
+            } else if (option === '2jt') {
+                optionText = 'Nabung 2 Juta (Hold 38 hari)';
             } else {
-                clearError(nameInput);
+                optionText = 'Belum memutuskan paket';
             }
             
-            if (!emailInput.value.trim() || !isValidEmail(emailInput.value)) {
-                isValid = false;
-                showError(emailInput, 'Email tidak valid');
-            } else {
-                clearError(emailInput);
+            // Format WhatsApp message
+            let whatsappMessage = `Halo Ferdi, saya ${name} ingin daftar KromBank menggunakan kode referral FERD5294.%0A%0AInformasi saya:%0A- Email: ${email}%0A- No. HP: ${phone}%0A- Pilihan: ${optionText}`;
+            
+            // Add message if provided
+            if (message) {
+                whatsappMessage += `%0A%0APesan tambahan: ${message}`;
             }
             
-            if (!phoneInput.value.trim() || !isValidPhone(phoneInput.value)) {
-                isValid = false;
-                showError(phoneInput, 'Nomor telepon tidak valid');
-            } else {
-                clearError(phoneInput);
-            }
+            // Show loading message for a moment
+            showLoadingMessage();
             
-            if (isValid) {
-                // Show loading state
-                const submitBtn = registerForm.querySelector('button[type="submit"]');
-                const originalText = submitBtn.textContent;
-                submitBtn.textContent = 'Processing...';
-                submitBtn.disabled = true;
-                
-                // Simulate API call
-                setTimeout(() => {
-                    submitBtn.textContent = 'Berhasil!';
-                    registerForm.reset();
-                    
-                    // Show success message
-                    const successMsg = document.createElement('div');
-                    successMsg.className = 'success-message';
-                    successMsg.textContent = 'Pendaftaran berhasil! Tim kami akan menghubungi Anda segera.';
-                    registerForm.appendChild(successMsg);
-                    
-                    setTimeout(() => {
-                        submitBtn.textContent = originalText;
-                        submitBtn.disabled = false;
-                        successMsg.remove();
-                    }, 3000);
-                }, 1500);
-            }
+            // Redirect to WhatsApp after a short delay
+            setTimeout(() => {
+                window.location.href = `https://wa.me/6285752083533?text=${whatsappMessage}`;
+            }, 1500);
         });
     }
     
