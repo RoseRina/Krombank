@@ -1,0 +1,262 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>KromBank - Program Referral</title>
+    <link rel="stylesheet" href="styles.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+</head>
+<body>
+    <header class="header">
+        <div class="container">
+            <nav class="navbar">
+                <div class="logo">
+                    <img src="images/krombank-logo.png" alt="KromBank Logo">
+                    <span>KromBank</span>
+                </div>
+                <ul class="nav-links">
+                    <li><a href="#rewards">Rewards</a></li>
+                    <li><a href="#how-it-works">Cara Kerja</a></li>
+                    <li><a href="#faq">FAQ</a></li>
+                </ul>
+                <div class="cta-button">
+                    <a href="#register" class="btn-primary">Daftar Sekarang</a>
+                </div>
+            </nav>
+        </div>
+    </header>
+
+    <section class="hero">
+        <div class="container">
+            <div class="hero-content">
+                <h1>Program Referral KromBank</h1>
+                <p>Ajak teman Anda bergabung dan nabung di KromBank. Dapatkan reward menarik untuk setiap referral sukses!</p>
+                <div class="hero-cta">
+                    <a href="#register" class="btn-primary">Mulai Referral</a>
+                    <a href="#rewards" class="btn-secondary">Lihat Rewards</a>
+                </div>
+            </div>
+            <div class="hero-image">
+                <img src="images/hero-image.png" alt="KromBank Referral Program">
+            </div>
+        </div>
+    </section>
+
+    <section id="rewards" class="rewards">
+        <div class="container">
+            <div class="section-header">
+                <h2>Rewards Menarik</h2>
+                <p>Ajak teman Anda bergabung dan dapatkan rewards ini:</p>
+            </div>
+            <div class="rewards-cards">
+                <div class="reward-card">
+                    <div class="reward-icon">
+                        <i class="fas fa-coins"></i>
+                    </div>
+                    <h3>Nabung 300rb</h3>
+                    <p class="reward-highlight">Dapat Rp75.000</p>
+                    <ul class="reward-details">
+                        <li>Rp50.000 dari KromBank</li>
+                        <li>Rp25.000 bonus tambahan</li>
+                        <li>Hold selama 1 bulan</li>
+                    </ul>
+                    <a href="#register" class="btn-tertiary">Ajak Teman</a>
+                </div>
+                <div class="reward-card featured">
+                    <div class="reward-badge">Populer</div>
+                    <div class="reward-icon">
+                        <i class="fas fa-gem"></i>
+                    </div>
+                    <h3>Nabung 2 Juta</h3>
+                    <p class="reward-highlight">Dapat Rp250.000</p>
+                    <ul class="reward-details">
+                        <li>Rp150.000 dari KromBank</li>
+                        <li>Rp100.000 bonus tambahan</li>
+                        <li>Hold selama 38 hari</li>
+                    </ul>
+                    <a href="#register" class="btn-primary">Ajak Teman</a>
+                </div>
+            </div>
+            <div class="reward-note">
+                <p><strong>Catatan:</strong> Rewards akan cair setelah dana masuk ke rekening KromBank.</p>
+            </div>
+        </div>
+    </section>
+
+    <section id="how-it-works" class="how-it-works">
+        <div class="container">
+            <div class="section-header">
+                <h2>Cara Kerja Program Referral</h2>
+                <p>Ikuti langkah-langkah sederhana untuk mendapatkan rewards Anda</p>
+            </div>
+            <div class="steps">
+                <div class="step">
+                    <div class="step-number">1</div>
+                    <div class="step-icon">
+                        <i class="fas fa-user-plus"></i>
+                    </div>
+                    <h3>Bagikan Kode Referral</h3>
+                    <p>Dapatkan kode referral unik Anda dan bagikan kepada teman-teman Anda.</p>
+                </div>
+                <div class="step">
+                    <div class="step-number">2</div>
+                    <div class="step-icon">
+                        <i class="fas fa-user-check"></i>
+                    </div>
+                    <h3>Teman Mendaftar</h3>
+                    <p>Teman Anda mendaftar dan membuka rekening menggunakan kode referral Anda.</p>
+                </div>
+                <div class="step">
+                    <div class="step-number">3</div>
+                    <div class="step-icon">
+                        <i class="fas fa-wallet"></i>
+                    </div>
+                    <h3>Teman Menabung</h3>
+                    <p>Teman Anda menabung sesuai ketentuan program (300rb atau 2jt).</p>
+                </div>
+                <div class="step">
+                    <div class="step-number">4</div>
+                    <div class="step-icon">
+                        <i class="fas fa-gift"></i>
+                    </div>
+                    <h3>Terima Rewards</h3>
+                    <p>Setelah periode hold selesai, rewards akan masuk ke rekening Anda.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section id="register" class="register">
+        <div class="container">
+            <div class="register-content">
+                <h2>Daftar Sekarang</h2>
+                <p>Dapatkan kode referral Anda dan mulai mengajak teman untuk mendapatkan rewards!</p>
+                <form id="referral-form" class="referral-form">
+                    <div class="form-group">
+                        <label for="name">Nama Lengkap</label>
+                        <input type="text" id="name" name="name" required>
+                    </div>
+                    <div class="form-group">
+                        <label for="email">Email</label>
+                        <input type="email" id="email" name="email" required>
+                    </div>
+                    <div class="form-group">
+                        <label for="phone">Nomor Handphone</label>
+                        <input type="tel" id="phone" name="phone" required>
+                    </div>
+                    <button type="submit" class="btn-primary">Dapatkan Kode Referral</button>
+                </form>
+            </div>
+            <div class="register-image">
+                <img src="images/register-image.png" alt="Daftar Referral KromBank">
+            </div>
+        </div>
+    </section>
+
+    <section id="faq" class="faq">
+        <div class="container">
+            <div class="section-header">
+                <h2>Pertanyaan Umum</h2>
+                <p>Jawaban untuk pertanyaan yang sering diajukan</p>
+            </div>
+            <div class="faq-items">
+                <div class="faq-item">
+                    <div class="faq-question">
+                        <h3>Bagaimana cara mendapatkan kode referral?</h3>
+                        <span class="faq-toggle"><i class="fas fa-plus"></i></span>
+                    </div>
+                    <div class="faq-answer">
+                        <p>Anda dapat mendapatkan kode referral dengan mendaftar melalui formulir di halaman ini. Kode referral akan dikirim ke email Anda.</p>
+                    </div>
+                </div>
+                <div class="faq-item">
+                    <div class="faq-question">
+                        <h3>Berapa lama periode hold untuk mendapatkan rewards?</h3>
+                        <span class="faq-toggle"><i class="fas fa-plus"></i></span>
+                    </div>
+                    <div class="faq-answer">
+                        <p>Untuk tabungan 300rb, periode hold adalah 1 bulan. Untuk tabungan 2 juta, periode hold adalah 38 hari.</p>
+                    </div>
+                </div>
+                <div class="faq-item">
+                    <div class="faq-question">
+                        <h3>Kapan rewards akan cair?</h3>
+                        <span class="faq-toggle"><i class="fas fa-plus"></i></span>
+                    </div>
+                    <div class="faq-answer">
+                        <p>Rewards akan cair setelah dana masuk ke rekening KromBank dan periode hold selesai.</p>
+                    </div>
+                </div>
+                <div class="faq-item">
+                    <div class="faq-question">
+                        <h3>Apakah ada batasan jumlah referral?</h3>
+                        <span class="faq-toggle"><i class="fas fa-plus"></i></span>
+                    </div>
+                    <div class="faq-answer">
+                        <p>Tidak ada batasan jumlah referral. Anda dapat mengajak sebanyak mungkin teman untuk bergabung dengan KromBank.</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <footer class="footer">
+        <div class="container">
+            <div class="footer-content">
+                <div class="footer-logo">
+                    <img src="images/krombank-logo.png" alt="KromBank Logo">
+                    <span>KromBank</span>
+                </div>
+                <div class="footer-links">
+                    <div class="footer-links-group">
+                        <h3>Produk</h3>
+                        <ul>
+                            <li><a href="#">Tabungan</a></li>
+                            <li><a href="#">Investasi</a></li>
+                            <li><a href="#">Pinjaman</a></li>
+                        </ul>
+                    </div>
+                    <div class="footer-links-group">
+                        <h3>Perusahaan</h3>
+                        <ul>
+                            <li><a href="#">Tentang Kami</a></li>
+                            <li><a href="#">Karir</a></li>
+                            <li><a href="#">Blog</a></li>
+                        </ul>
+                    </div>
+                    <div class="footer-links-group">
+                        <h3>Dukungan</h3>
+                        <ul>
+                            <li><a href="#">Pusat Bantuan</a></li>
+                            <li><a href="#">Hubungi Kami</a></li>
+                            <li><a href="#">FAQ</a></li>
+                        </ul>
+                    </div>
+                </div>
+                <div class="footer-social">
+                    <h3>Ikuti Kami</h3>
+                    <div class="social-icons">
+                        <a href="#"><i class="fab fa-facebook-f"></i></a>
+                        <a href="#"><i class="fab fa-twitter"></i></a>
+                        <a href="#"><i class="fab fa-instagram"></i></a>
+                        <a href="#"><i class="fab fa-linkedin-in"></i></a>
+                    </div>
+                </div>
+            </div>
+            <div class="footer-bottom">
+                <p>&copy; 2023 KromBank. Hak Cipta Dilindungi.</p>
+                <div class="footer-bottom-links">
+                    <a href="#">Syarat & Ketentuan</a>
+                    <a href="#">Kebijakan Privasi</a>
+                </div>
+            </div>
+        </div>
+    </footer>
+
+    <script src="script.js"></script>
+</body>
+</html> 
